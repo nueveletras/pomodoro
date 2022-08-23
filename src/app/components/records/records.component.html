@@ -1,0 +1,60 @@
+<p-table #dt [value]="tasks" dataKey="id" styleClass="p-datatable-tasks" [rowHover]="true"
+    [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" responsiveLayout="scroll"
+    [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [filterDelay]="0" [globalFilterFields]="['taskName']">
+    <!-- <ng-template pTemplate="caption">
+        <div class="table-header">
+            Lista de tareas
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="dt.filterGlobal($event.target?.value, 'contains')" placeholder="Global Search" />
+            </span>
+        </div>
+    </ng-template> -->
+    <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="creationDate">
+              <div class="flex justify-content-between align-items-center">
+                  Fecha de creación
+                  <p-sortIcon field="creationDate"></p-sortIcon>
+                  <p-columnFilter type="date" field="creationDate" display="menu" class="ml-auto"></p-columnFilter>
+              </div>
+          </th>
+            <th pSortableColumn="taskName">
+                <div class="flex justify-content-between align-items-center">
+                    Nombre tarea
+                    <p-sortIcon field="taskName"></p-sortIcon>
+                    <p-columnFilter type="text" field="taskName" display="menu" class="ml-auto"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="time">
+                <div class="flex justify-content-between align-items-center">
+                    Tiempo
+                    <p-sortIcon field="time"></p-sortIcon>
+                    <p-columnFilter type="text" field="time" display="menu" currency="USD" class="ml-auto"></p-columnFilter>
+                </div>
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-task>
+        <tr class="p-selectable-row">
+          <td>
+              <span class="p-column-title">Fecha creación</span>
+              {{task.creationDate | date: 'MM/dd/yyyy'}}
+          </td>
+            <td>
+                <span class="p-column-title">Nombre tarea</span>
+                {{task.taskName}}
+            </td>
+            <td>
+              <span class="p-column-title">Tiempo</span>
+              {{task.time}}
+          </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="8">No tasks found.</td>
+        </tr>
+    </ng-template>
+</p-table>

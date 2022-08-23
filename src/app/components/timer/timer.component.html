@@ -1,0 +1,90 @@
+<div class="col-12" *ngIf="!isTaskAdded">
+  <div class="p-inputgroup pt-3 flex justify-content-center">
+    <span class="p-inputgroup-addon"
+      ><i class="pi pi-tags" style="line-height: 1.25"></i
+    ></span>
+    <input
+      [formControl]="taskName"
+      type="text"
+      pInputText
+      placeholder="Tarea"
+    />
+    <button
+      [disabled]="!taskName.valid"
+      type="button"
+      (click)="addTask()"
+      pButton
+      pRipple
+      label="Agregar"
+    ></button>
+  </div>
+</div>
+
+<div class="col-12" *ngIf="isTaskAdded">
+  <div class="p-inputgroup pt-3 flex justify-content-center">
+    <p-chip
+      [label]="taskNameValue"
+      icon="pi pi-user-edit"
+      styleClass="mr-2"
+    ></p-chip>
+  </div>
+</div>
+
+<div class="pt-3 pb-3 flex justify-content-center">
+  <p-fieldset legend="Timer" class="p-fieldset-content">
+    <h2>
+      {{
+        displayMinutes +
+          ":" +
+          (displaySeconds < 10 ? "0" + displaySeconds : displaySeconds)
+      }}
+    </h2>
+  </p-fieldset>
+</div>
+
+<div class="grid">
+  <div class="col">
+    <button
+      [disabled]="!isTaskAdded"
+      id="start-btn"
+      pRipple
+      pButton
+      type="button"
+      label="Iniciar"
+      (click)="startTimer()"
+      class="p-button-raised p-button-text"
+    ></button>
+  </div>
+  <div class="col">
+    <button
+      [disabled]="!isTaskAdded"
+      id="pause-btn"
+      pButton
+      type="button"
+      label="Pausar"
+      (click)="startEventHot$.next(false)"
+      class="p-button-secondary p-button-raised p-button-text"
+    ></button>
+  </div>
+  <div class="col">
+    <button
+      [disabled]="!isTaskAdded"
+      id="pause-btn"
+      pButton
+      type="button"
+      label="Siguiente"
+      (click)="startEventHot$.next(false)"
+      class="p-button-success p-button-raised p-button-text"
+    ></button>
+  </div>
+  <div class="col">
+    <button
+      id="pause-btn"
+      pButton
+      type="button"
+      label="Detener"
+      (click)="stopTimer()"
+      class="p-button-danger p-button-raised p-button-text"
+    ></button>
+  </div>
+</div>

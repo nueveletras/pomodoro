@@ -1,0 +1,25 @@
+<div class="field grid">
+  <div class="col">
+    <h5 class="col-fixed flex align-items-center justify-content-center">Timepo de enfoque</h5>
+    <p-knob [(ngModel)]="focusTimeValue" [step]="5" [max]="55"></p-knob>
+  </div>
+</div>
+
+<div class="field grid">
+  <div class="col">
+    <h5 class="col-fixed flex align-items-center justify-content-center">Pausa corta</h5>
+    <p-knob [(ngModel)]="breakValue" [step]="5" [max]="30"></p-knob>
+  </div>
+</div>
+<div class="field grid">
+  <div class="col">
+    <h5 class="col-fixed flex align-items-center justify-content-center">Pausa larga</h5>
+    <p-knob [(ngModel)]="longBreakValue" [step]="5" [max]="55"></p-knob>
+  </div>
+</div>
+<div class="field grid">
+  <div class="col">
+    <h5 class="col-fixed flex align-items-center justify-content-center">Rondas</h5>
+    <p-knob [(ngModel)]="roundsValue" [step]="1" [max]="8"></p-knob>
+  </div>
+</div>
