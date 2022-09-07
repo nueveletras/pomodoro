@@ -1,5 +1,12 @@
 # Web site
 This project is deployed in [Pomodoro test](https://pomodoro-method.web.app)
+![image](https://user-images.githubusercontent.com/26176259/188947229-e2be15a3-08cb-4e4c-bd3e-24b29a80f7be.png)
+
+![image](https://user-images.githubusercontent.com/26176259/188947463-c79aa959-baaa-41ea-a1fd-a80827dc6880.png)
+
+![image](https://user-images.githubusercontent.com/26176259/188948061-b0abf0e5-a493-46f0-a3af-14f4af25d53b.png) ![image](https://user-images.githubusercontent.com/26176259/188947878-fec1f117-e10e-4888-80f8-343efb476682.png)
+
+
 
 # PomodoroAt
 
