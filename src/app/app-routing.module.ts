@@ -1,27 +1,28 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RecordsComponent } from './components/records/records.component';
-import { SettingsComponent } from './components/settings/settings.component';
-import { TimerComponent } from './components/timer/timer.component';
 
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "timer",
+    redirectTo: "pages",
     pathMatch: 'full'
   },
   {
-    path: "timer",
-    component: TimerComponent
+    path: "pages/timer",
+    loadChildren: () => import('./modules/pages/timer/timer-routing.module').then(m => m.TimerRoutingModule)
   },
   {
-    path: "settings",
-    component: SettingsComponent
+    path: "pages/settings",
+    loadChildren: () => import('./modules/pages/settings/settings-routing.module').then(m => m.SettingsRoutingModule)
   },
   {
-    path: "records",
-    component: RecordsComponent
-  }
+    path: "pages/records",
+    loadChildren: () => import('./modules/pages/records/records-routing.module').then(m => m.RecordsRoutingModule)
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
+  },
 ];
 
 @NgModule({

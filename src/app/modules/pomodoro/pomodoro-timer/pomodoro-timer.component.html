@@ -1,0 +1,14 @@
+<div [class]="'pt-3 pb-3 flex justify-content-center' + (onCreate ? ' scalein animation-delay-200 animation-duration-1000 animation-iteration-infinite': '')">
+  <p-fieldset [legend]="!isOnBreak ? 'Temporizador' : 'Pausa'" styleClass="align-content-center">
+    <div class="flex justify-content-center">
+
+      <h2 >
+        {{
+          displayMinutes +
+            ":" +
+            (displaySeconds < 10 ? "0" + displaySeconds : displaySeconds)
+        }}
+      </h2>
+    </div>
+  </p-fieldset>
+</div>

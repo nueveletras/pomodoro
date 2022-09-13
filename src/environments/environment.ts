@@ -12,7 +12,9 @@ export const environment = {
   messagingSenderId: "339554662270",
   appId: "1:339554662270:web:71dc34a2595cef2c50a52f",
   measurementId: "G-MTE4GJD2BL"
-  }
+  },
+  url: "https://us-central1-pomodoro-method.cloudfunctions.net/api"
+  // url: "http://localhost:5000/pomodoro-method/us-central1/api"
 };
 
 /*

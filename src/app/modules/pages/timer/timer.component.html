@@ -1,0 +1,71 @@
+<!-- Mensajes de notificaciones -->
+<p-toast></p-toast>
+
+<pomodoro-info
+  [pomodoros]="pomodoros"
+  [pomodorosCompleted]="pomodorosCompleted"
+  [isTaskAdded]="isTaskAdded"
+  [taskNameValue]="taskNameValue"
+></pomodoro-info>
+
+<task-form [isTaskAdded]="isTaskAdded" (addTask)="addTask($event)"></task-form>
+
+<!-- ======================= DISPLAY TIMER ============================= -->
+
+<pomodoro-timer
+  [displaySeconds]="displaySeconds"
+  [displayMinutes]="displayMinutes"
+  [isOnBreak]="isOnBreak"
+  [onCreate]="onCreate"
+></pomodoro-timer>
+
+<!-- ======================= FIN DISPLAY TIMER ============================= -->
+
+<!-- =================== BOTONES =================================== -->
+<div *ngIf="!onCreate && isReset" class="grid align-items-center">
+  <div class="col md:col field grid">
+    <button
+      [disabled]="!isTaskAdded"
+      id="start-btn"
+      pRipple
+      pButton
+      type="button"
+      label="Iniciar"
+      (click)="startTimer()"
+      class="p-button-raised p-button-text"
+    ></button>
+  </div>
+  <div class="col md:col field grid">
+    <button
+      [disabled]="!isTaskAdded"
+      id="pause-btn"
+      pButton
+      type="button"
+      label="Pausar"
+      (click)="startEventHot$.next(false)"
+      class="p-button-secondary p-button-raised p-button-text"
+    ></button>
+  </div>
+  <div class="col md:col field grid">
+    <button
+      [disabled]="!isTaskAdded"
+      id="pause-btn"
+      pButton
+      type="button"
+      label="Siguiente"
+      (click)="startEventHot$.next(false)"
+      class="p-button-success p-button-raised p-button-text"
+    ></button>
+  </div>
+  <div class="col md:col field grid">
+    <button
+      id="pause-btn"
+      pButton
+      type="button"
+      label="Detener"
+      (click)="stopTimer()"
+      class="p-button-danger p-button-raised p-button-text"
+    ></button>
+  </div>
+</div>
+<!-- =================== FIN BOTONES =================================== -->
