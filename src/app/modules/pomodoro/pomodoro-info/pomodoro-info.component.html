@@ -1,0 +1,21 @@
+<div *ngIf="pomodoros.length" class="pt-2">
+
+  <div class="field grid justify-content-center">
+    <p-avatar *ngFor="let item of pomodoros"  [icon]="item.icon" styleClass="mt-1 mr-2"></p-avatar>
+  </div>
+
+  <div class="field pt-1 grid justify-content-center font-bold text-xl text-red-500">
+    <span pBadge [value]="pomodorosCompleted.toString()">Pomodoros</span>
+  </div>
+
+  <div class="col-12" *ngIf="isTaskAdded">
+    <div class="p-inputgroup flex justify-content-center">
+      <p-chip
+        [label]="taskNameValue"
+        icon="pi pi-user-edit"
+        styleClass="mr-2"
+      ></p-chip>
+    </div>
+  </div>
+
+</div>

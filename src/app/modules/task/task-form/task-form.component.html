@@ -1,0 +1,34 @@
+ <!-- ===================== FORMULARIO ============================ -->
+ <div class="col-12" *ngIf="!isTaskAdded">
+  <div class="p-inputgroup pt-2 flex justify-content-center">
+    <span class="p-inputgroup-addon"
+      ><i class="pi pi-tags" style="line-height: 1.25"></i
+    ></span>
+    <input
+      id="task"
+      [formControl]="taskName"
+      type="text"
+      pInputText
+      placeholder="Tarea"
+      autofocus
+    />
+    <button
+      id="addTask"
+      [disabled]="!taskName.valid"
+      type="button"
+      (click)="addTaskEmmiter()"
+      pButton
+      pRipple
+      label="Agregar"
+    ></button>
+  </div>
+  <div *ngIf="taskName.errors && taskName.invalid && taskName.touched" class="text-red-500 pt-1 pl-3 flex">
+    <small>
+      <span>{{taskName.errors['maxlength'] && 'Ups! por favor menos de 15 caracteres'}}</span>
+      <span>{{taskName.errors['required'] && 'Ups! este campo es requerido'}}</span>
+    </small>
+  </div>
+</div>
+
+
+<!-- ===================== FIN FORMULARIO ============================ -->

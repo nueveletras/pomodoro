@@ -3,53 +3,36 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TimerComponent } from './components/timer/timer.component';
-import {CardModule} from 'primeng/card';
-import {FieldsetModule} from 'primeng/fieldset';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {ButtonModule} from 'primeng/button';
-import {DockModule} from 'primeng/dock';
-import {TabMenuModule} from 'primeng/tabmenu';
-import {KnobModule} from 'primeng/knob';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SettingsComponent } from './components/settings/settings.component';
-import { ChipModule } from 'primeng/chip';
-import { RecordsComponent } from './components/records/records.component';
-import {TableModule} from 'primeng/table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
-import { provideAuth,getAuth } from '@angular/fire/auth';
-import { provideDatabase,getDatabase } from '@angular/fire/database';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { provideAuth, getAuth } from '@angular/fire/auth';
 import { SETTINGS as AUTH_SETTINGS } from '@angular/fire/compat/auth';
+import { HttpClientModule } from "@angular/common/http";
+import { CoreModule } from './core/core.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { TimerModule } from './modules/pages/timer/timer.module';
+import { RecordsModule } from './modules/pages/records/records.module';
+import { SettingsModule } from './modules/pages/settings/settings.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    TimerComponent,
-    SettingsComponent,
-    RecordsComponent
+    AppComponent
   ],
   imports: [
+    CoreModule.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    CardModule,
-    FieldsetModule,
-    ButtonModule,
-    DockModule,
-    TabMenuModule,
-    KnobModule,
-    FormsModule,
-    ReactiveFormsModule,
-    ChipModule,
-    TableModule,
+    HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
-    provideDatabase(() => getDatabase()),
+    AuthModule,
+    TimerModule,
+    RecordsModule,
+    SettingsModule,
   ],
   providers: [
     { provide: AUTH_SETTINGS, useValue: { appVerificationDisabledForTesting: true } }
