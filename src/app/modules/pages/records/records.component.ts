@@ -1,13 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TaskModel } from 'src/app/modules/task/shared/models/task.model';
 import { MessageService } from "primeng/api";
-import { filter, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { TaskFacadeService } from '@task/services/task-facade.service';
 
 @Component({
   selector: 'app-records',
   templateUrl: './records.component.html',
-  styleUrls: ['./records.component.css'],
   providers: [MessageService]
 })
 export class RecordsComponent implements OnInit, OnDestroy {

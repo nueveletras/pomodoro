@@ -1,18 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-topbar',
   templateUrl: './topbar.component.html',
   styleUrls: ['./topbar.component.css']
 })
-export class TopbarComponent implements OnInit {
+export class TopbarComponent {
 
   @Input () title!: string
   @Input () displayName!: string
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

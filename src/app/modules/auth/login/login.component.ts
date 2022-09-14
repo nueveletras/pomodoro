@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthFacadeService } from '../shared/services/auth-facade.service';
 
 @Component({

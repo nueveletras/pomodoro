@@ -1,11 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'pomodoro-settings',
-  templateUrl: './pomodoro-settings.component.html',
-  styleUrls: ['./pomodoro-settings.component.css']
+  templateUrl: './pomodoro-settings.component.html'
 })
-export class PomodoroSettingsComponent implements OnInit {
+export class PomodoroSettingsComponent {
 
   @Input() isLoading!: boolean
   @Input() focusTimeValue!: number
@@ -14,13 +13,14 @@ export class PomodoroSettingsComponent implements OnInit {
   @Input() roundsValue!: number
   @Output() save = new EventEmitter()
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
   saveSetting(){
-
+    const settings = {
+      focusTime: this.focusTimeValue,
+      longBreak: this.longBreakValue,
+      break: this.breakValue,
+      rounds: this.roundsValue
+    }
+    this.save.emit(settings)
   }
 
 }

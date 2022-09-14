@@ -1,19 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TaskModel } from '@task/models/task.model';
 
 @Component({
   selector: 'task-table',
-  templateUrl: './task-table.component.html',
-  styleUrls: ['./task-table.component.css']
+  templateUrl: './task-table.component.html'
 })
-export class TaskTableComponent implements OnInit {
+export class TaskTableComponent {
 
   @Input()   tasks!: TaskModel[]
   @Input()   isLoading: boolean = false
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }
