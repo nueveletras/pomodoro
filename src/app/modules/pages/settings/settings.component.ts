@@ -7,7 +7,6 @@ import { SettingFacadeService } from '../../pomodoro/shared/services/setting-fac
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.css'],
   providers: [MessageService]
 })
 export class SettingsComponent implements OnInit {
@@ -59,14 +58,8 @@ export class SettingsComponent implements OnInit {
 
   }
 
-  saveSetting() {
-    this.userSettings = {
-      focusTime: this.focusTimeValue,
-      longBreak: this.longBreakValue,
-      break: this.breakValue,
-      rounds: this.roundsValue
-    }
-    this.settingFacade.update(this.idUser as string, this.userSettings)
+  saveSetting(userSettings: SettingModel) {
+    this.settingFacade.update(this.idUser as string, userSettings)
   }
 
 }

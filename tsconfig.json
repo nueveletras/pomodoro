@@ -27,6 +27,7 @@
       "@shared/*": ["src/app/shared/*"],
       "@interfaces/*": ["src/app/core/interfaces/*"],
       "@models/*": ["src/app/core/models/*"],
+      "@auth/*": ["src/app/modules/auth/shared/*"],
       "@task/*": ["src/app/modules/task/shared/*"],
       "@pomodoro/*": ["src/app/modules/pomodoro/shared/*"],
 

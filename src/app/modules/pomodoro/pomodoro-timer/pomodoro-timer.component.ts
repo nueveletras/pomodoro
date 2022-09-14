@@ -1,20 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'pomodoro-timer',
-  templateUrl: './pomodoro-timer.component.html',
-  styleUrls: ['./pomodoro-timer.component.css']
+  templateUrl: './pomodoro-timer.component.html'
 })
-export class PomodoroTimerComponent implements OnInit {
+export class PomodoroTimerComponent {
 
   @Input() displayMinutes: number = 0
   @Input() displaySeconds: number = 0
   @Input() onCreate: boolean = false
   @Input() isOnBreak: boolean = false
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

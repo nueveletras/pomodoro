@@ -46,3 +46,7 @@ Thumbs.db
 /.firebase
 .firebaserc
 firebasejson
+
+#sonar
+.scannerwork/*
+/.scannerwork

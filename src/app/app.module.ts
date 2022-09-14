@@ -15,6 +15,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { TimerModule } from './modules/pages/timer/timer.module';
 import { RecordsModule } from './modules/pages/records/records.module';
 import { SettingsModule } from './modules/pages/settings/settings.module';
+import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { SettingsModule } from './modules/pages/settings/settings.module';
     TimerModule,
     RecordsModule,
     SettingsModule,
+    SharedModule
   ],
   providers: [
     { provide: AUTH_SETTINGS, useValue: { appVerificationDisabledForTesting: true } }

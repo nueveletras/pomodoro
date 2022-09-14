@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { AuthGuard, redirectUnauthorizedTo, redirectLoggedInTo } from "@angular/fire/auth-guard";
+import { AuthGuard, redirectLoggedInTo } from "@angular/fire/auth-guard";
 
 const redirectLoggedIn = () => redirectLoggedInTo(['timer'])
 

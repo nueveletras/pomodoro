@@ -24,7 +24,6 @@ import { SettingFacadeService } from '../../pomodoro/shared/services/setting-fac
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.component.html',
-  styleUrls: ['./timer.component.css'],
   providers: [MessageService, DatePipe]
 })
 export class TimerComponent implements OnInit, OnDestroy {
@@ -200,8 +199,6 @@ export class TimerComponent implements OnInit, OnDestroy {
     localStorage.setItem("pomodoros", JSON.stringify(this.pomodoros))
     this.pomodorosCompleted++
     localStorage.setItem("pomodorosCompleted", this.pomodorosCompleted.toString())
-    if (this.pomodorosCompleted == this.userSettings.rounds) {
-    }
   }
 
   /**

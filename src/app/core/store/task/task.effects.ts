@@ -20,8 +20,7 @@ export class TaskEffects {
           this.http.get(action.url).pipe(
             map((tasks) => {
               let bufferTask: TaskModel[] = tasks as TaskModel[]
-              bufferTask.map(_task => _task.creationDate = new Date(_task.creationDate))
-
+              bufferTask.forEach(_task => _task.creationDate = new Date(_task.creationDate))
               return taskAction
                 .searchTasksSuccess({ tasks: bufferTask })
             }

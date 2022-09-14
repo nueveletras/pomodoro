@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { SettingModel } from './modules/pomodoro/shared/models/setting.model';
 import { Auth, onAuthStateChanged } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { MessageService } from 'primeng/api';
 import { filter, tap } from 'rxjs';
-import { AuthFacadeService } from './modules/auth/shared/services/auth-facade.service';
-import { TaskFacadeService } from '@task/services/task-facade.service';
 import { SettingFacadeService } from './modules/pomodoro/shared/services/setting-facade.service';
+import { TaskFacadeService } from '@task/services/task-facade.service';
+import { AuthFacadeService } from '@auth/services/auth-facade.service';
 
 @Component({
   selector: 'app-root',
@@ -33,9 +32,9 @@ export class AppComponent implements OnInit {
         this.loggedIn = true
         this.authFacade.setCurrentUser(user)
         this.idUser = user?.uid
-        this.displayName = user?.displayName as string || "Invitado"
+        this.displayName = user?.displayName || "Invitado"
         this.settingFacade.search(this.idUser)
-        this.taskFacade.search(this.idUser as string)
+        this.taskFacade.search(this.idUser)
 
       } else {
         console.log('User redirected to login');
