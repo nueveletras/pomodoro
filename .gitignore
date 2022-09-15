@@ -5,6 +5,7 @@
 /tmp
 /out-tsc
 /bazel-out
+/public
 
 # Node
 /node_modules
@@ -45,7 +46,7 @@ Thumbs.db
 .firebase/*
 /.firebase
 .firebaserc
-firebasejson
+firebase.json
 
 #sonar
 .scannerwork/*
