@@ -6,7 +6,7 @@ import { TaskModule } from '../../task/task.module';
 import { PomodoroModule } from '../../pomodoro/pomodoro.module';
 import { SharedModule } from '@shared/shared.module';
 import { TimerComponent } from './timer.component';
-
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [
@@ -17,6 +17,7 @@ import { TimerComponent } from './timer.component';
     TimerRoutingModule,
     TaskModule,
     PomodoroModule,
+    ConfirmDialogModule,
     SharedModule
   ]
 })

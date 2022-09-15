@@ -43,24 +43,30 @@ export class AppComponent implements OnInit {
     });
   }
 
-  idUser: string | undefined;
-  loggedIn: boolean = false
-  userSettings!: SettingModel
-  title = 'pomodoro-at';
-  displayName: string = '';
-  menuItems: MenuItem[] = [];
+  public idUser: string | undefined;
+  public loggedIn: boolean = false
+  public title = 'pomodoro-at';
+  public displayName: string = '';
+  public menuItems: MenuItem[] = [];
+
+  protected userSettings!: SettingModel
 
   ngOnInit(): void {
+    this.setSuscriptions()
+    this.getSettings()
+    this.setMenuItems()
+  }
 
+  setSuscriptions() {
     this.settingFacade.getError().subscribe(
       (error) => {
-        this.messageService.add({severity:'error', summary:'Lo siento :(', detail:error});
+        this.messageService.add({ severity: 'error', summary: 'Lo siento :(', detail: error });
       }
     )
 
     this.settingFacade.getMessage().subscribe(
       (message) => {
-        this.messageService.add({severity:'success', summary:'Excelente!!', detail:message});
+        this.messageService.add({ severity: 'success', summary: 'Excelente!!', detail: message });
       }
     )
 
@@ -70,9 +76,9 @@ export class AppComponent implements OnInit {
         this.settingFacade.create(this.idUser as string)
       })
     ).subscribe()
+  }
 
-    this.getSettings()
-
+  setMenuItems() {
     this.menuItems = [
       {
         label: 'Temporizador',
@@ -96,6 +102,5 @@ export class AppComponent implements OnInit {
     this.settingFacade.getSetting().subscribe((setting) => {
       this.userSettings = setting as SettingModel
     })
-
   }
 }

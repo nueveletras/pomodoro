@@ -8,7 +8,7 @@ export class PomodoroTimerComponent {
 
   @Input() displayMinutes: number = 0
   @Input() displaySeconds: number = 0
-  @Input() onCreate: boolean = false
+  @Input() isOnCreate: boolean = false
   @Input() isOnBreak: boolean = false
 
 }

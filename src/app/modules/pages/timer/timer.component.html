@@ -1,25 +1,29 @@
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+<p-toast></p-toast>
+<!-- ======================= INFO TIMER ============================= -->
 <pomodoro-info
   [pomodoros]="pomodoros"
   [pomodorosCompleted]="pomodorosCompleted"
   [isTaskAdded]="isTaskAdded"
   [taskNameValue]="taskNameValue"
 ></pomodoro-info>
+<!-- ======================= FIN INFO TIMER ============================= -->
 
-<task-form [isTaskAdded]="isTaskAdded" (addTask)="addTask($event)"></task-form>
+<!-- ======================= FORM TASK ============================= -->
+<task-form [isTaskAdded]="isTaskAdded" (addPomodoro)="addPomodoro($event)"></task-form>
+<!-- ======================= FIN FORM TASK ============================= -->
 
 <!-- ======================= DISPLAY TIMER ============================= -->
-
 <pomodoro-timer
   [displaySeconds]="displaySeconds"
   [displayMinutes]="displayMinutes"
   [isOnBreak]="isOnBreak"
-  [onCreate]="onCreate"
+  [isOnCreate]="isOnCreate"
 ></pomodoro-timer>
-
 <!-- ======================= FIN DISPLAY TIMER ============================= -->
 
 <!-- =================== BOTONES =================================== -->
-<div *ngIf="!onCreate && isReset" class="grid align-items-center">
+<div *ngIf="!isOnCreate && isReset" class="grid align-items-center">
   <div class="col md:col field grid">
     <button
       [disabled]="!isTaskAdded"
@@ -39,7 +43,7 @@
       pButton
       type="button"
       label="Pausar"
-      (click)="startEventHot$.next(false)"
+      (click)="pauseTimer()"
       class="p-button-secondary p-button-raised p-button-text"
     ></button>
   </div>
@@ -50,7 +54,7 @@
       pButton
       type="button"
       label="Siguiente"
-      (click)="startEventHot$.next(false)"
+      (click)="confirmationAction('nextPomodoro')"
       class="p-button-success p-button-raised p-button-text"
     ></button>
   </div>
@@ -60,7 +64,7 @@
       pButton
       type="button"
       label="Detener"
-      (click)="stopTimer()"
+      (click)="confirmationAction('stopTimer')"
       class="p-button-danger p-button-raised p-button-text"
     ></button>
   </div>

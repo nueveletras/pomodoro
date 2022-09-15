@@ -8,12 +8,12 @@ import { FormControl, Validators } from '@angular/forms';
 export class TaskFormComponent {
 
   @Input() isTaskAdded: boolean = false
-  @Output() addTask = new EventEmitter()
+  @Output() addPomodoro = new EventEmitter()
 
   taskName = new FormControl('', [Validators.required, Validators.maxLength(15)])
 
-  addTaskEmmiter(){
-    this.addTask.emit(this.taskName)
+  addPomodoroEmmiter(){
+    this.addPomodoro.emit(this.taskName)
   }
 
 }

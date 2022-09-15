@@ -3,7 +3,7 @@ import { environment } from 'src/environments/environment';
 import { Store } from "@ngrx/store";
 import * as fromAction from '@store/setting/setting.actions'
 import * as fromReducer from '@store/setting/setting.reducer'
-import { Observable } from 'rxjs';
+import { filter, Observable } from 'rxjs';
 import { IAuxiliarMethods } from '@interfaces/auxiliar.methods.interface';
 import { SettingModel } from '../models/setting.model';
 import { ApiActionModel } from 'src/app/core/models/api-action-model';
@@ -53,7 +53,9 @@ export class SettingFacadeService implements IAuxiliarMethods{
   }
 
   getMessage(): Observable<string> {
-    return this.store.select(fromReducer.getMessage)
+    return this.store.select(fromReducer.getMessage).pipe(
+      filter(message => !!message && message !== "")
+    )
   }
 
   getError(): Observable<string> {
