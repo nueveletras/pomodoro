@@ -1,3 +1,4 @@
+
 <div class="max-w-screen">
   <p-table
     #dt
@@ -12,11 +13,10 @@
     responsiveLayout="scroll"
     scrollHeight="flex"
     [paginator]="true"
-    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-    [lazy]="true"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
     [loading]="isLoading"
     [filterDelay]="0"
-    [globalFilterFields]="['taskName']"
+    (onFilter)="setOnFilter($event)"
   >
     <ng-template pTemplate="header">
       <tr>
@@ -75,6 +75,12 @@
         </td>
       </tr>
     </ng-template>
+    <ng-template pTemplate="footer">
+      <tr>
+          <td colspan="2" class="text-right">Tiempo total</td>
+          <td>{{totalFocusTime}}</td>
+      </tr>
+  </ng-template>
     <ng-template pTemplate="emptymessage">
       <tr>
         <td colspan="8">No se encontraron tareas.</td>

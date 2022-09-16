@@ -3,22 +3,27 @@ import { TaskModel } from 'src/app/modules/task/shared/models/task.model';
 import { MessageService } from "primeng/api";
 import { Subscription } from 'rxjs';
 import { TaskFacadeService } from '@task/services/task-facade.service';
+import { DatePipe } from '@angular/common';
+import { calculateTotalTime } from '@shared/utils/array-utils';
 
 @Component({
   selector: 'app-records',
   templateUrl: './records.component.html',
-  providers: [MessageService]
+  providers: [MessageService, DatePipe]
+
 })
 export class RecordsComponent implements OnInit, OnDestroy {
 
-  tasks!: TaskModel[]
-  userId: string | undefined;
-  isLoading: boolean = false;
+  public tasks!: TaskModel[]
+  public isLoading: boolean = false;
+  public totalFocusTime: string = "";
+
   private subs: Subscription = new Subscription
 
   constructor(
     readonly taskFacade: TaskFacadeService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    readonly datePipe: DatePipe
 
   ) {
   }
@@ -47,6 +52,10 @@ export class RecordsComponent implements OnInit, OnDestroy {
     this.subs.add(errors$)
     this.subs.add(loading$)
     this.subs.add(tasks$)
+  }
+
+  onFilter($event: any){
+    this.totalFocusTime = calculateTotalTime($event.filteredValue, "time", this.datePipe)
   }
 
 }

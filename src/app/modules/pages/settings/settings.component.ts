@@ -1,29 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SettingModel } from 'src/app/modules/pomodoro/shared/models/setting.model';
-import { MessageService } from 'primeng/api';
 import { AuthFacadeService } from 'src/app/modules/auth/shared/services/auth-facade.service';
 import { SettingFacadeService } from '../../pomodoro/shared/services/setting-facade.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-settings',
-  templateUrl: './settings.component.html',
-  providers: [MessageService]
+  templateUrl: './settings.component.html'
 })
-export class SettingsComponent implements OnInit {
+export class SettingsComponent implements OnInit, OnDestroy {
 
-  userSettings!: SettingModel
+  public focusTimeValue!: number
+  public longBreakValue!: number
+  public breakValue!: number
+  public roundsValue!: number
+  public isLoading: boolean = true;
 
-  focusTimeValue!: number
-  longBreakValue!: number
-  breakValue!: number
-  roundsValue!: number
-  idUser: string | undefined;
-  isLoading: boolean = true;
+  private idUser: string | undefined;
+  private userSettings!: SettingModel
+  private subs: Subscription = new Subscription
 
   constructor(
     readonly settingFacade: SettingFacadeService,
-    readonly authFacade: AuthFacadeService,
-    private messageService: MessageService
+    readonly authFacade: AuthFacadeService
   ) {
     this.authFacade.getCurrentUser().subscribe(
       user => {
@@ -32,19 +31,20 @@ export class SettingsComponent implements OnInit {
     )
   }
 
+  ngOnDestroy(): void {
+    this.subs.unsubscribe()
+  }
+
   ngOnInit(): void {
+    this.setSuscriptions()
+  }
 
-    this.settingFacade.getLoading().subscribe(
+  setSuscriptions() {
+    this.subs.add(this.settingFacade.getLoading().subscribe(
       (isLoading) => this.isLoading = isLoading
-    )
+    ))
 
-    this.settingFacade.getMessage().subscribe(
-      (message) => {
-        this.messageService.add({ severity: 'success', summary: 'Excelente!!', detail: message });
-      }
-    )
-
-    this.settingFacade.getSetting().subscribe(
+    this.subs.add(this.settingFacade.getSetting().subscribe(
       (setting) => {
         this.userSettings = setting as SettingModel
         if (this.userSettings) {
@@ -54,8 +54,7 @@ export class SettingsComponent implements OnInit {
           this.roundsValue = this.userSettings.rounds
         }
       }
-    )
-
+    ))
   }
 
   saveSetting(userSettings: SettingModel) {

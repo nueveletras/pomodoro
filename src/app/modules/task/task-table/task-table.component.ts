@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TaskModel } from '@task/models/task.model';
 
 @Component({
@@ -7,7 +7,13 @@ import { TaskModel } from '@task/models/task.model';
 })
 export class TaskTableComponent {
 
-  @Input()   tasks!: TaskModel[]
-  @Input()   isLoading: boolean = false
+  @Input() tasks: TaskModel[] = []
+  @Input() isLoading: boolean = false
+  @Input() totalFocusTime: string = ""
+  @Output() onFilter = new EventEmitter()
+
+  setOnFilter($event: Event){
+    this.onFilter.emit($event)
+  }
 
 }

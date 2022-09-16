@@ -1,1 +1,6 @@
-<task-table [tasks]="tasks" [isLoading]="isLoading"></task-table>
+<task-table
+  [tasks]="tasks"
+  [isLoading]="isLoading"
+  [totalFocusTime]="totalFocusTime"
+  (onFilter)="onFilter($event)"
+></task-table>
